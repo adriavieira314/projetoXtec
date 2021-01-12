@@ -1,0 +1,224 @@
+/* tela de input */
+.div-input {
+    background-color: #DCDCDC;
+    border: 2px solid #fff;
+    margin: 10px 5px 0px 5px;
+    border-radius: 20px;
+}
+
+#tela {
+    margin: 10px;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.heading-input {
+    margin-left: 20px;
+}
+
+.inputdigita {
+    background: none;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    height: 80px;
+    padding: 0 20px 25px 0;
+    text-align: right;
+    font-size: 60px;
+    outline: none;
+}
+/* fim tela de input */
+
+/* botoes */
+.botoes {
+    border: 2px solid #fff;
+    margin: 30px 5px;
+    border-radius: 20px;
+    background-color: #DCDCDC;
+    padding: 20px;
+}
+
+.btn {
+    height: 40px;
+    border-radius: 25px !important;
+}
+
+button {
+    color: #000;
+    font-weight: 500;
+}
+
+#btn-apagar {
+    color: #f6f6f6;
+    border-radius: 50% !important;
+    box-shadow: 0 5px 0 #db7070;
+    background-color: #F08080;
+}
+
+.calc-button {
+    margin: 15px 5px;
+}
+
+.btn-selecionar {
+    box-shadow: 0 5px 0 #9b9898;
+    background-color: #fff;
+    margin: 15px 5px;
+}
+
+.select-button:active {
+    position: relative;
+    top: 5px;
+    box-shadow: none;
+}
+
+#local {
+    color: #f6f6f6;
+    font-weight: 500;
+    /* overflow: auto;
+    white-space: normal;
+    word-wrap: break-word; */
+}
+
+.btn-mostrar  {
+    color: #f6f6f6;
+    box-shadow: 0 5px 0 #34648b;
+    background-color: #4682B4;
+}
+
+select {
+    margin-top: 30px !important;
+    color: #000;
+    font-weight: 500;
+    text-align: center; /* para firefox */
+    text-align-last: center; /* para chrome */
+}
+
+#painel, #estrutura {
+    color: #000;
+    font-weight: 500;
+    font-size: 13px;
+    margin-top: 5px;
+    position: absolute;
+    z-index: 1;
+}
+
+#painel {
+    left: 35%;
+}
+
+#estrutura {
+    left: 51%;
+}
+
+.texto {
+    height: auto;
+}
+/* fim botoes */
+
+/* media-queries */
+@media only screen and (max-width: 1200px) {
+    img {
+        width: 30vw;
+        height: 30vh;
+    }
+
+    #painel {
+        left: 29%;
+    }
+    
+    #estrutura {
+        left: 52%;
+    }
+}
+
+@media only screen and (max-width: 1060px) {
+    #btn-consumo,
+    #btn-reais {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .inputdigita {
+        font-size: 3em;
+    }
+
+    .card {
+        margin: 0 10px;
+    }
+
+    #painel {
+        left: 26%;
+    }
+    
+    #estrutura {
+        left: 53%;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    img {
+        width: 40vw;
+        height: 40vh;
+    }
+
+    .inputdigita {
+        font-size: 2em;
+    }
+
+    #btn-consumo,
+    #btn-reais {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    #containerKits {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .card {
+        margin: 10px 0;
+        width: 70vw !important;
+    }
+
+    #painel {
+        left: 23%;
+    }
+    
+    #estrutura {
+        left: 55%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    img {
+        width: 50vw;
+        height: 50vh;
+    }
+
+    #containerKits {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        margin: 10px 0;
+        width: 90vw !important;
+    }
+
+    #btn-consumo,
+    #btn-reais {
+        font-size: 10px;
+    }
+
+    #painel {
+        left: 15%;
+    }
+    
+    #estrutura {
+        left: 55%;
+    }
+}

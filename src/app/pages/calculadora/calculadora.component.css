@@ -1,0 +1,67 @@
+.alert {
+    max-width: 36vw;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+/* tela de input */
+.container-fluid {
+    max-width: 36vw;
+    /* height: 90vh; */
+    margin: 0 auto;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    /* box-shadow: 10px 10px 8px #888888; */
+    box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #DCDCDC;
+    margin-bottom: 40px;
+}
+
+#marca-calc {
+    margin-top: 10px;
+    width: 13em;
+    height: 2.5em;
+}
+/* fim tela de input */
+
+@media only screen and (max-width: 1200px) {
+    .container-fluid {
+        max-width: 50vw;
+    }
+
+    #marca-calc {
+        width: 10em;
+        height: 2em;
+    }
+}
+
+@media only screen and (max-width: 1060px) {
+    .container-fluid {
+        max-width: 50vw;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .container-fluid {
+        max-width: 60vw;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    .container-fluid {
+        max-width: 60vw;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .container-fluid {
+        max-width: 70vw;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .container-fluid {
+        max-width: 90vw;
+    }
+}

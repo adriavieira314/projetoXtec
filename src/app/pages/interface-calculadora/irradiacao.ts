@@ -1,0 +1,21 @@
+export interface IrradiacaoSolar {
+    ANNUAL:string;
+    APR:string;
+    AUG:string;
+    CLASS:string;
+    DEC:string;
+    FEB:string;
+    ID:string;
+    JAN:string;
+    JUL:string;
+    JUN:string;
+    LAT:string;
+    LON:string;
+    MAR:string;
+    MAY:string;
+    NAME:string;
+    NOV:string;
+    OCT:string;
+    SEP:string;
+    STATE:string;
+}
