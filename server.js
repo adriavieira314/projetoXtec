@@ -5,24 +5,24 @@ const express = require('express'),
   parser = require('xml2js').parseString,
   app = express(),
   cron = require('cron').CronJob,
-  json = require('./temp/arquivo.json') || "",
+  // json = require('./temp/arquivo.json') || "",
   port = 3000;
 
 //0 5 * * *
 
 const agent = new https.Agent({ rejectUnauthorized: false });
 
-// async function saveXML() {
-//   try {
-//     const response = await axios.get('https://webservice.aldo.com.br/asp.net/ferramentas/integracao.ashx?u=79443&p=xt3cc0', { httpsAgent: agent });
+async function saveXML() {
+  try {
+    const response = await axios.get('https://webservice.aldo.com.br/asp.net/ferramentas/integracao.ashx?u=79443&p=xt3cc0', { httpsAgent: agent });
     
-//     fs.writeFile('./temp/arquivo.xml', response.data, (error) => {
-//       console.error(error);
-//     });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+    fs.writeFile('./temp/arquivo.xml', response.data, (error) => {
+      console.error(error);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 function convertToJSON() {
   fs.readFile('./temp/arquivo.xml', 'utf-8', (error, data) => {
@@ -41,16 +41,17 @@ function convertToJSON() {
 }
 
 new cron('* * * * *', () => {
-  console.log('teste')
+  console.log('xml');
+  saveXML();
 }).start();
 
 app.use(express.json());
 app.use(express.static('./app/dist/CalculadoraSolar/'));
 
-app
-.get('/dados', (request, response) => {
-  response.status(200).json(json);
-})
-.get('/', (request, response) => response.sendFile('./app/dist/CalculadoraSolar/index.html'));
+// app.get('/dados', (request, response) => {
+//   response.status(200).json(json);
+// });
+
+app.get('/', (request, response) => response.sendFile('./app/dist/CalculadoraSolar/index.html'));
 
 app.listen(port, () => console.info(`Servidor rodando na porta: ${port}`));
