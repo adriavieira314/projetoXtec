@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as xml2js from 'xml2js';
-import * as fs from 'fs';
 declare var $:any;
 
 @Component({
@@ -22,7 +20,7 @@ export class CardsComponent implements OnInit {
         //         console.log('Done');
         //     });
         // });
-        
+
     }
 
     convertCSV() {
@@ -36,6 +34,6 @@ export class CardsComponent implements OnInit {
             }
         })
 
-        
+
     }
 }
