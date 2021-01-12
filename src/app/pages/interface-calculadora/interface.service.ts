@@ -8,6 +8,6 @@ export class InterfaceService {
     constructor(private http: HttpClient) { }
 
     getCepApi(cep: string) {
-        return this.http.get<InterfaceCalc[]>("https://viacep.com.br/ws/" + cep + "/json/?callback");
+        return this.http.get<InterfaceCalc>("https://viacep.com.br/ws/" + cep + "/json/?callback");
     }
 }
