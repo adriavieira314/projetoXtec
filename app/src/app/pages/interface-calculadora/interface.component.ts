@@ -9,6 +9,7 @@ declare var $:any;
   styleUrls: ['./interface.component.css']
 })
 export class InterfaceComponent implements OnInit {
+  teste = [];
   today = new Date();
   monName = new Array ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
   cdInput: string = 'cep';
@@ -41,6 +42,7 @@ export class InterfaceComponent implements OnInit {
   ngOnInit(): void {
     this.painel();
     this.convertCSV();
+    this.pegaJSON();
   }
 
   onClick(id:string) {
@@ -80,12 +82,12 @@ export class InterfaceComponent implements OnInit {
             this.cepInformado = false;
             this.apagar();
             alert('CEP não encontrado.');
-          })
-        } else {
-          alert('Fomarto de CEP inválido');
-        }
+        })
+      } else {
+        alert('Fomarto de CEP inválido');
       }
     }
+  }
 
     calculoEnergia() {
       if (this.selectedValor === "consumo") {
@@ -201,24 +203,25 @@ export class InterfaceComponent implements OnInit {
       // this.carregando = true;
       // this.precoKit = 0;
 
-      this.cdInput = "cep";
-      this.mascara = "0000-000";
-      this.inputCEP = "";
+      // this.cdInput = "cep";
+      // this.mascara = "0000-000";
+      // this.inputCEP = "";
 
-      this.local = 'UF';
-      this.energia = 0;
-      this.potPico = 0;
-      this.paineis = 0;
-      this.area = 0;
-      this.inputValor = 0;
-      this.investimento = 0;
-      this.energiaText = "";
-      this.potPicoText = "";
-      this.paineisText = "";
-      this.areaText = "";
+      // this.local = 'UF';
+      // this.energia = 0;
+      // this.potPico = 0;
+      // this.paineis = 0;
+      // this.area = 0;
+      // this.inputValor = 0;
+      // this.investimento = 0;
+      // this.energiaText = "";
+      // this.potPicoText = "";
+      // this.paineisText = "";
+      // this.areaText = "";
 
-      this.grupo = "Grupo";
-      this.cepInformado = false;
+      // this.grupo = "Grupo";
+      // this.cepInformado = false;
+      console.log(this.teste);
     }
 
     convertCSV() {
@@ -277,4 +280,23 @@ export class InterfaceComponent implements OnInit {
         }
       }
     }
-  }
+
+    pegaJSON() {
+      this.interfaceService.getJSON().subscribe(dados => {
+        for (let i = 0; i < dados.produtos.produto.length; i++) {
+          const element = dados.produtos.produto[i];
+          this.teste.push({
+            categoria: dados.produtos.produto[i].categoria[0],
+            descricao: dados.produtos.produto[i].descricao[0],
+            precoeup: dados.produtos.produto[i].precoeup[0],
+            foto: dados.produtos.produto[i].foto[0],
+            marca: dados.produtos.produto[i].marca[0],
+            codigo: dados.produtos.produto[i].codigo[0]
+          })
+          console.log(element);
+        }
+      })
+    }
+}
+
+  
