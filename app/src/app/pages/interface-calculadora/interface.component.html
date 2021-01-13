@@ -7,9 +7,9 @@
             <h6 class="heading-input" *ngIf="cdInput === 'reais'">Informe o valor da sua conta de luz:</h6>
             <h6 class="heading-input" *ngIf="cdInput === 'carregando' || cdInput === 'grupo'">Estimativa de Investimento:</h6>
             <div class="row">
-                <input class="col inputdigita" placeholder="00000-000" [hidden]="cdInput !== 'cep'" [(ngModel)]="inputCEP" (blur)="encontraCEP()" maxlength="8">
+                <input class="col inputdigita" placeholder="00000-000" [hidden]="cdInput !== 'cep'" [(ngModel)]="inputCEP" (blur)="encontraCEP()" [textMask]="{mask: maskCEP}">
                 <input class="col inputdigita" placeholder="Consumo(kWh)" [hidden]="cdInput !== 'kwh'" [(ngModel)]="inputValor">
-                <input class="col inputdigita" placeholder="R$" [hidden]="cdInput !== 'reais'" [(ngModel)]="inputValor">
+                <input class="col inputdigita" placeholder="R$" [hidden]="cdInput !== 'reais'" [(ngModel)]="inputValor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
                 <input class="col inputdigita" placeholder="Aguarde..." [hidden]="cdInput !== 'carregando'" readonly>
                 <input class="col inputdigita" placeholder="R${{investimento}}" [hidden]="cdInput !== 'grupo'" readonly>
             </div>
@@ -17,11 +17,13 @@
     </div>
 
     <div class="botoes">
-        <div class="row justify-content-end">
+        <div [hidden]="isDevice" class="row justify-content-end">
             <button id="btn-apagar" class="col-3 btn select-button calc-button" (click)="apagar()">C</button>
             <button id="btn-consumo" class="col btn select-button calc-button btn-selecionar" [disabled]="!cepInformado" (click)="onClick('consumo')">Consumo(kWh)</button>
             <button id="btn-reais" class="col btn select-button calc-button btn-selecionar" [disabled]="!cepInformado" (click)="onClick('reais')">Valor em Reais</button>
         </div>
+
+        <app-botoes-alternativos [hidden]="!isDevice" [cepInformado]="cepInformado" (onClick)="onClick($event)"></app-botoes-alternativos>
 
         <div class="row">
             <button class="select-button btn btn-selecionar col calc-button" (click)="onClick('cep')">
@@ -35,7 +37,7 @@
             </button>
         </div>
 
-        <div class="row">
+        <div [hidden]="isDevice" class="row">
             <p id="painel">Potência Painel:</p>
             <select class="select-button btn btn-selecionar col calc-button" [disabled]="!cepInformado" [(ngModel)]="selectedPainel" (ngModelChange)="painel($event)">
                 <option value="335W">335W</option>
@@ -51,7 +53,7 @@
                 <option value="ONDULADA">Ondulada</option>
             </select>
         </div>
-
+        
         <div class="row">
             <button class="texto btn btn-mostrar col calc-button">
                 <h6>Energia Kwh</h6>
