@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { InterfaceService } from './interface.service';
 import { IrradiacaoSolar } from "./irradiacao";
 declare var $:any;
@@ -9,6 +9,9 @@ declare var $:any;
   styleUrls: ['./interface.component.css']
 })
 export class InterfaceComponent implements OnInit {
+  public maskCEP = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+  screenWidth: number;
+  isDevice: boolean = false;
   produtos = [];
   today = new Date();
   monName = new Array ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
@@ -44,6 +47,7 @@ export class InterfaceComponent implements OnInit {
   ngOnInit(): void {
     this.painel();
     this.convertCSV();
+    this.getScreenSize();
   }
 
   onClick(id:string) {
@@ -67,9 +71,10 @@ export class InterfaceComponent implements OnInit {
   encontraCEP() {
     if (this.inputCEP !== "") {
       //Expressão regular para validar o CEP.
+      var cep = this.inputCEP.replace("-", "");
       var validacep = /^[0-9]{8}$/;
-      if (validacep.test(this.inputCEP)) {
-        this.interfaceService.getCepApi(this.inputCEP).subscribe(
+      if (validacep.test(cep)) {
+        this.interfaceService.getCepApi(cep).subscribe(
           dados => {
             if (dados.localidade) {
               this.local = dados.uf + " - " + dados.localidade;
@@ -374,6 +379,19 @@ export class InterfaceComponent implements OnInit {
     $('html, body').animate({scrollTop: $("#marca-calc").offset().top}, 500);
     this.precoKit = parseFloat(preco);
     this.valorInvestimento();
+  }
+
+  //Para dispostivos moveis
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth <= 770){
+      this.isDevice = true;
+
+      $("#btn-apagar").removeClass("col-3");
+      $("#btn-apagar").addClass("col-4");
+  }
+    console.log(this.screenWidth);
   }
 }
 
