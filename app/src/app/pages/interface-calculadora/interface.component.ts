@@ -1,4 +1,5 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener, ViewChild } from "@angular/core";
+import { ModalDirective } from "ngx-bootstrap/modal";
 import { InterfaceService } from './interface.service';
 import { IrradiacaoSolar } from "./irradiacao";
 declare var $:any;
@@ -43,6 +44,23 @@ export class InterfaceComponent implements OnInit {
   areaText: any;
 
   constructor(private interfaceService: InterfaceService) { }
+
+  //funcoes modal
+  @ViewChild('autoShownModal') autoShownModal: ModalDirective;
+  isModalShown = false;
+ 
+  showModal(): void {
+    this.isModalShown = true;
+  }
+ 
+  hideModal(): void {
+    this.autoShownModal.hide();
+  }
+ 
+  onHidden(): void {
+    this.isModalShown = false;
+  }
+  //fim 
 
   ngOnInit(): void {
     this.painel();
@@ -154,7 +172,7 @@ export class InterfaceComponent implements OnInit {
   tipoGrupo() {
     if (this.potPico >= 104) {
       this.grupo = "Grupo A";
-      alert('Grupo A');
+      this.showModal();
 
     } else {
       this.cdInput = "carregando";
@@ -390,8 +408,7 @@ export class InterfaceComponent implements OnInit {
 
       $("#btn-apagar").removeClass("col-3");
       $("#btn-apagar").addClass("col-4");
-  }
-    console.log(this.screenWidth);
+    }
   }
 }
 

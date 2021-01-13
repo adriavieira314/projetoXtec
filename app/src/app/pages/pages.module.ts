@@ -5,6 +5,8 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TextMaskModule } from 'angular2-text-mask';
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 import { CalculadoraComponent } from "./calculadora/calculadora.component";
 import { InterfaceComponent } from "./interface-calculadora/interface.component";
@@ -17,7 +19,8 @@ import { BotoesAlternativosComponent } from "./botoesAlternativos/botoesAlternat
         FormsModule,
         HttpClientModule,
         TextMaskModule,
-        CurrencyMaskModule
+        CurrencyMaskModule,
+        ModalModule.forRoot()
     ],
     // devo declarar no declarations para o PagesModule enxergar o componente
     declarations: [
