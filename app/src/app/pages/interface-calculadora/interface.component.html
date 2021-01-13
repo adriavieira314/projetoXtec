@@ -1,78 +1,94 @@
-<div class="div-input">
-    <div id="tela">
-        <h6 class="heading-input" *ngIf="cdInput === 'cep'">Informe seu CEP:</h6>
-        <h6 class="heading-input" *ngIf="cdInput === 'kwh'">Informe o valor do consumo da energia:</h6>
-        <h6 class="heading-input" *ngIf="cdInput === 'reais'">Informe o valor da sua conta de luz:</h6>
-        <h6 class="heading-input" *ngIf="cdInput === 'carregando'">Estimativa de Investimento:</h6>
+<div class="container-fluid">
+    <img id="marca-calc" src="assets/logo.png" class="img-fluid" alt="Logo da Empresa">
+    <div class="div-input">
+        <div id="tela">
+            <h6 class="heading-input" *ngIf="cdInput === 'cep'">Informe seu CEP:</h6>
+            <h6 class="heading-input" *ngIf="cdInput === 'kwh'">Informe o valor do consumo da energia:</h6>
+            <h6 class="heading-input" *ngIf="cdInput === 'reais'">Informe o valor da sua conta de luz:</h6>
+            <h6 class="heading-input" *ngIf="cdInput === 'carregando' || cdInput === 'grupo'">Estimativa de Investimento:</h6>
+            <div class="row">
+                <input class="col inputdigita" placeholder="00000-000" [hidden]="cdInput !== 'cep'" [(ngModel)]="inputCEP" (blur)="encontraCEP()" maxlength="8">
+                <input class="col inputdigita" placeholder="Consumo(kWh)" [hidden]="cdInput !== 'kwh'" [(ngModel)]="inputValor">
+                <input class="col inputdigita" placeholder="R$" [hidden]="cdInput !== 'reais'" [(ngModel)]="inputValor">
+                <input class="col inputdigita" placeholder="Aguarde..." [hidden]="cdInput !== 'carregando'" readonly>
+                <input class="col inputdigita" placeholder="R${{investimento}}" [hidden]="cdInput !== 'grupo'" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="botoes">
+        <div class="row justify-content-end">
+            <button id="btn-apagar" class="col-3 btn select-button calc-button" (click)="apagar()">C</button>
+            <button id="btn-consumo" class="col btn select-button calc-button btn-selecionar" [disabled]="!cepInformado" (click)="onClick('consumo')">Consumo(kWh)</button>
+            <button id="btn-reais" class="col btn select-button calc-button btn-selecionar" [disabled]="!cepInformado" (click)="onClick('reais')">Valor em Reais</button>
+        </div>
+
         <div class="row">
-            <input class="col inputdigita" placeholder="00000-000" [hidden]="cdInput !== 'cep'" [(ngModel)]="inputCEP" (blur)="encontraCEP()" maxlength="8">
-            <input class="col inputdigita" placeholder="Consumo(kWh)" [hidden]="cdInput !== 'kwh'" [(ngModel)]="inputValor">
-            <input class="col inputdigita" placeholder="R$" [hidden]="cdInput !== 'reais'" [(ngModel)]="inputValor">
-            <input class="col inputdigita" placeholder="Aguarde..." [hidden]="cdInput !== 'carregando'">
-            <input class="col inputdigita" placeholder="R$Investimento" [hidden]="cdInput !== 'grupo'">
+            <button class="select-button btn btn-selecionar col calc-button" (click)="onClick('cep')">
+                <p>CEP {{inputCEP}}</p>
+            </button>
+        </div>
+
+        <div class="row">
+            <button class="btn btn-mostrar col calc-button" (click)="onClick('cep')">
+                <p>{{local}}</p>
+            </button>
+        </div>
+
+        <div class="row">
+            <p id="painel">Potência Painel:</p>
+            <select class="select-button btn btn-selecionar col calc-button" [disabled]="!cepInformado" [(ngModel)]="selectedPainel" (ngModelChange)="painel($event)">
+                <option value="335W">335W</option>
+                <option value="410W">410W</option>
+                <option value="440W">440W</option>
+            </select>
+            <p id="estrutura">Tipo de Estrutura:</p>
+            <select class="select-button btn btn-selecionar col calc-button" [disabled]="!cepInformado" [(ngModel)]="selectedEstrutura">
+                <option value="METALICA">Metálica</option>
+                <option value="COLONIAL">Colonial</option>
+                <option value="LAJE">Laje</option>
+                <option value="SOLO">Solo</option>
+                <option value="ONDULADA">Ondulada</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <button class="texto btn btn-mostrar col calc-button">
+                <h6>Energia Kwh</h6>
+                <h4>{{energiaText}}</h4>
+            </button>
+            <button class="texto btn btn-mostrar col calc-button">
+                <h6>Área m2</h6>
+                <h4>{{areaText}}</h4>
+            </button>
+            <button class="texto btn btn-mostrar col calc-button">
+                <h6>Quantidade Painéis</h6>
+                <h4>{{paineisText}}</h4>
+            </button>
+            <button class="texto btn btn-mostrar col calc-button">
+                <h6>Potência Pico(Kwh)</h6>
+                <h4>{{potPicoText}}</h4>
+            </button> 
+        </div>
+
+        <div class="row">
+            <button id="grupo" class="btn btn-mostrar col-8 calc-button">{{grupo}}</button>
+            <button id="resultado" class="select-button btn btn-selecionar col calc-button" [disabled]="!inputValor" (click)="resultado()"> = </button>
         </div>
     </div>
 </div>
 
-<div class="botoes">
-    <div class="row justify-content-end">
-        <button id="btn-apagar" class="col-3 btn select-button calc-button" (click)="apagar()">C</button>
-        <button id="btn-consumo" class="col btn select-button calc-button btn-selecionar" [disabled]="!cepInformado" (click)="onClick('consumo')">Consumo(kWh)</button>
-        <button id="btn-reais" class="col btn select-button calc-button btn-selecionar" [disabled]="!cepInformado" (click)="onClick('reais')">Valor em Reais</button>
-    </div>
-
-    <div class="row">
-        <button class="select-button btn btn-selecionar col calc-button" (click)="onClick('cep')">
-            <p>CEP {{inputCEP}}</p>
-        </button>
-    </div>
-
-    <div class="row">
-        <button class="btn btn-mostrar col calc-button" (click)="onClick('cep')">
-            <p>{{local}}</p>
-        </button>
-    </div>
-
-    <div class="row">
-        <p id="painel">Potência Painel:</p>
-        <select class="select-button btn btn-selecionar col calc-button" [disabled]="!cepInformado" [(ngModel)]="selectedPainel" (ngModelChange)="painel($event)">
-            <option value="335">335W</option>
-            <option value="410">410W</option>
-            <option value="440">440W</option>
-        </select>
-        <p id="estrutura">Tipo de Estrutura:</p>
-        <select class="select-button btn btn-selecionar col calc-button" [disabled]="!cepInformado" [(ngModel)]="selectedEstrutura">
-            <option value="METALICA">Metálica</option>
-            <option value="COLONIAL">Colonial</option>
-            <option value="LAJE">Laje</option>
-            <option value="SOLO">Solo</option>
-            <option value="ONDULADA">Ondulada</option>
-        </select>
-    </div>
-
-    <div class="row">
-        <button class="texto btn btn-mostrar col calc-button">
-            <h6>Energia Kwh</h6>
-            <h4>{{energiaText}}</h4>
-        </button>
-        <button class="texto btn btn-mostrar col calc-button">
-            <h6>Área m2</h6>
-            <h4>{{areaText}}</h4>
-        </button>
-        <button class="texto btn btn-mostrar col calc-button">
-            <h6>Quantidade Painéis</h6>
-            <h4>{{paineisText}}</h4>
-        </button>
-        <button class="texto btn btn-mostrar col calc-button">
-            <h6>Potência Pico(Kwh)</h6>
-            <h4>{{potPicoText}}</h4>
-        </button> 
-    </div>
-
-    <div class="row">
-        <button id="grupo" class="btn btn-mostrar col-8 calc-button">{{grupo}}</button>
-        <button id="resultado" class="select-button btn btn-selecionar col calc-button" [disabled]="!inputValor" (click)="resultado()"> = </button>
+<!-- Cards Produtos -->
+<div [hidden]="!pronto" id="containerKits">
+    <div class="card" *ngFor="let produto of produtos" (click)="precoGerador(produto.precoeup)">
+        <img [src]="produto.foto" class="card-img-top img-responsive" alt="Imagem do Produto">
+        <div class="card-body">
+            <p class="cards" id="codigo">Código: {{produto.codigo}}</p>
+            <p class="cards" id="categoria">
+                {{produto.categoria}} {{produto.marca}} ({{produto.codigo}})
+            </p>
+            <p class="cards" id="descricao">{{produto.descricao}}</p>
+            <span class="cards" id="preco">R$ {{produto.precoeup}}</span>
+        </div>
     </div>
 </div>
-
-<app-cards></app-cards>
