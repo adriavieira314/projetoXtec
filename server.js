@@ -1,14 +1,17 @@
 const express = require('express'),
+  cors = require('cors'),
   https = require('https'),
   axios = require('axios'),
   fs = require('fs'),
   parser = require('xml2js').parseString,
   app = express(),
   cron = require('cron').CronJob,
-  // json = require('./temp/arquivo.json') || "",
+  json = require('./temp/arquivo.json') || "",
   port = 3000;
 
 //0 5 * * *
+
+app.use(cors());
 
 const agent = new https.Agent({ rejectUnauthorized: false });
 
@@ -19,6 +22,9 @@ async function saveXML() {
     fs.writeFile('./temp/arquivo.xml', response.data, (error) => {
       console.error(error);
     });
+    
+    console.log('XML carregado!');
+    convertToJSON();
   } catch (error) {
     console.error(error);
   }
@@ -42,15 +48,17 @@ function convertToJSON() {
 
 new cron('* * * * *', () => {
   console.log('xml');
-  saveXML();
+  // convertToJSON();
 }).start();
+
+saveXML();
 
 app.use(express.json());
 app.use(express.static('./app/dist/CalculadoraSolar/'));
 
-// app.get('/dados', (request, response) => {
-//   response.status(200).json(json);
-// });
+app.get('/dados', (request, response) => {
+  response.status(200).json(json);
+});
 
 app.get('/', (request, response) => response.sendFile('./app/dist/CalculadoraSolar/index.html'));
 
