@@ -1,0 +1,53 @@
+#btn-apagar {
+    color: #f6f6f6;
+    border-radius: 50% !important;
+    box-shadow: 0 5px 0 #db7070;
+    background-color: #F08080;
+}
+
+.select-button:active {
+    position: relative;
+    top: 5px;
+    box-shadow: none;
+}
+
+.calc-button {
+    margin: 15px 5px;
+}
+
+.btn-selecionar {
+    box-shadow: 0 5px 0 #9b9898;
+    background-color: #fff;
+    margin: 15px 5px;
+}
+
+.btn {
+    height: 40px;
+    border-radius: 25px !important;
+}
+
+button {
+    color: #000;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 1060px) {
+    #btn-consumo,
+    #btn-reais {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    #btn-consumo,
+    #btn-reais {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #btn-consumo,
+    #btn-reais {
+        font-size: 10px;
+    }
+}
