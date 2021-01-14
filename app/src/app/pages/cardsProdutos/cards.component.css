@@ -48,12 +48,12 @@
 }
 
 /* media-queries */
-@media only screen and (max-width: 1200px) {
+/* @media only screen and (max-width: 1200px) {
     .card-img-top {
-        /* height: auto; */
+        height: auto;
         width: auto;
     }
-}
+} */
 
 @media only screen and (max-width: 900px) {
     .card {

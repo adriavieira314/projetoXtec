@@ -1,6 +1,6 @@
 <!-- Cards Produtos -->
 <div [hidden]="!pronto" id="containerKits">
-    <div class="card" *ngFor="let produto of produtos" (click)="precoGerador(produto.precoeup)">
+    <div class="card" *ngFor="let produto of produtos" (click)="precoGeradorCards(produto.precoeup)">
         <img [src]="produto.foto" class="card-img-top img-responsive" alt="Imagem do Produto">
         <div class="card-body">
             <p class="cards" id="codigo">Código: {{produto.codigo}}</p>

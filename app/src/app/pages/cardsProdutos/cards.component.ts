@@ -14,11 +14,16 @@ export class CardsComponent{
   @Input() potPico: number;
   @Input() pronto: boolean;
   @Output() arrayPronta: EventEmitter<any> = new EventEmitter();
+  @Output() precoGerador: EventEmitter<any> = new EventEmitter();
 
   constructor(private calculadoraService: CalculadoraService) { }
 
   arrayProntaCards() {
-      this.arrayPronta.emit();
+    this.arrayPronta.emit();
+  }
+
+  precoGeradorCards() {
+    this.precoGerador.emit();
   }
 
   pegaJSON() {
