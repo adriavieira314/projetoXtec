@@ -22,8 +22,8 @@ export class CardsComponent{
     this.arrayPronta.emit();
   }
 
-  precoGeradorCards() {
-    this.precoGerador.emit();
+  precoGeradorCards(valor: any) {
+    this.precoGerador.emit(valor);
   }
 
   pegaJSON() {
