@@ -14,7 +14,6 @@ export class CalculadoraComponent implements OnInit {
   public maskCEP = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   screenWidth: number;
   isDevice: boolean = false;
-  produtos = [];
   today = new Date();
   monName = new Array ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
   cdInput: string = 'cep';
@@ -222,7 +221,6 @@ export class CalculadoraComponent implements OnInit {
   }
 
   apagar() {
-    this.produtos = [];
     this.pronto = false;
     this.precoKit = 0;
 
@@ -302,10 +300,10 @@ export class CalculadoraComponent implements OnInit {
     }
   }
 
-  arrayPronta() {
+  arrayPronta(preco) {
     this.pronto = true;
     this.cdInput = "grupo";
-    this.precoKit = parseFloat(this.produtos[0].precoeup);
+    this.precoKit = parseFloat(preco);
     this.valorInvestimento();
   }
 

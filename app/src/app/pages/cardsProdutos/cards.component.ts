@@ -18,8 +18,8 @@ export class CardsComponent{
 
   constructor(private calculadoraService: CalculadoraService) { }
 
-  arrayProntaCards() {
-    this.arrayPronta.emit();
+  arrayProntaCards(valor: any) {
+    this.arrayPronta.emit(valor);
   }
 
   precoGeradorCards(valor: any) {
@@ -110,7 +110,7 @@ export class CardsComponent{
                   this.produtos = this.produtos.slice(0,3);
                   
                   this.produtos = this.produtos.sort((a, b) => a.precoeup < b.precoeup ? -1 : a.precoeup > b.precoeup ? 1 : 0);
-                  this.arrayProntaCards();
+                  this.arrayProntaCards(this.produtos[0].precoeup);
                 }
               }
             }
