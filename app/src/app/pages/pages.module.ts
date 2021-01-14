@@ -9,9 +9,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 import { CalculadoraComponent } from "./calculadora/calculadora.component";
-import { InterfaceComponent } from "./interface-calculadora/interface.component";
 import { CardsComponent } from "./cardsProdutos/cards.component";
 import { BotoesAlternativosComponent } from "./botoesAlternativos/botoesAlternativos.component";
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
     imports: [
@@ -25,16 +25,16 @@ import { BotoesAlternativosComponent } from "./botoesAlternativos/botoesAlternat
     // devo declarar no declarations para o PagesModule enxergar o componente
     declarations: [
         CalculadoraComponent,
-        InterfaceComponent,
         CardsComponent,
-        BotoesAlternativosComponent
+        BotoesAlternativosComponent,
+        ModalComponent
     ],
     // devo declarar no exports para quem for importar PagesModule enxergar o componente
     exports: [
         CalculadoraComponent,
-        InterfaceComponent,
         CardsComponent,
-        BotoesAlternativosComponent
+        BotoesAlternativosComponent,
+        ModalComponent
     ],
 })
 export class PagesModule { }

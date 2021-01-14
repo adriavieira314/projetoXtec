@@ -1,4 +1,4 @@
-export interface InterfaceCalc {
+export interface CEP {
     bairro:string;
     cep:string;
     complemento:string;

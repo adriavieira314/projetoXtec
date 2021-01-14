@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal"
+    class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-auto-name" class="modal-title pull-left">Cliente Grupo A</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="font-weight: 500;">
+                Sugerimos que você seja cliente do Grupo A, entre em contato com a engenharia.<br>
+                Contato: <span style="text-decoration: underline;">3622-3917</span>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-left">
+                  <button class="btn btn-default" (click)="hideModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

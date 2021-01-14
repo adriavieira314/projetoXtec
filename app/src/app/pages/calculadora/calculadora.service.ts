@@ -1,14 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { InterfaceCalc } from './interfaceCalc'
+import { CEP } from './calculadora'
 
 @Injectable({ providedIn: 'root' })
-export class InterfaceService {
+export class CalculadoraService {
 
     constructor(private http: HttpClient) { }
   
     getCepApi(cep: string) {
-        return this.http.get<InterfaceCalc>("https://viacep.com.br/ws/" + cep + "/json/?callback");
+        return this.http.get<CEP>("https://viacep.com.br/ws/" + cep + "/json/?callback");
     }
 
     getJSON() {

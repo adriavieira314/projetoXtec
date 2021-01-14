@@ -9,7 +9,7 @@ export class BotoesAlternativosComponent {
     @Input() cepInformado: boolean;
     @Output() onClick: EventEmitter<any> = new EventEmitter();
 
-    onClickTeste(valor:string) {
+    onClickBotao(valor:string) {
         this.onClick.emit(valor);
     }
 }
