@@ -46,12 +46,11 @@ function convertToJSON() {
   });
 }
 
-new cron('* * * * *', () => {
-  console.log('xml');
-  // convertToJSON();
+new cron('0 5 * * *', () => {
+  console.log('Fetch da API iniciado.');
+  saveXML();
 }).start();
 
-saveXML();
 
 app.use(express.json());
 app.use(express.static('./app/dist/CalculadoraSolar/'));
