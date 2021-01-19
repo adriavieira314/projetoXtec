@@ -51,6 +51,9 @@ new cron('0 5 * * *', () => {
   saveXML();
 }).start();
 
+// usar como inicio da aplicacao
+// saveXML();
+
 app.use(express.json());
 app.use(express.static('./app/dist/CalculadoraSolar/'));
 
