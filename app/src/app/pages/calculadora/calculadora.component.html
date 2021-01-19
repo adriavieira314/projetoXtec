@@ -23,7 +23,7 @@
             <button id="btn-reais" class="col btn select-button calc-button btn-selecionar" [disabled]="!cepInformado" (click)="onClick('reais')">Valor em Reais</button>
         </div>
 
-        <app-botoes-alternativos [hidden]="!isDevice" [cepInformado]="cepInformado" (onClick)="onClick($event)"></app-botoes-alternativos>
+        <app-botoes-alternativos [hidden]="!isDevice" [cepInformado]="cepInformado" (onClick)="onClick($event)" (apagar)="apagar()"></app-botoes-alternativos>
 
         <div class="row">
             <button class="select-button btn btn-selecionar col calc-button" (click)="onClick('cep')">

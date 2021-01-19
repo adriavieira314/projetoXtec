@@ -1,6 +1,6 @@
 <!-- em dispositivos moveis, os selects ficam em linhas individuais -->
 <div class="row">
-    <button id="btn-apagar" class="col-3 btn select-button calc-button" (click)="apagar()">C</button>
+    <button id="btn-apagar" class="col-3 btn select-button calc-button" (click)="onApagarBotao()">C</button>
 </div>
 <div class="row">
     <button id="btn-consumo" style="font-size: 12px;" class="col btn select-button calc-button btn-selecionar" [disabled]="!cepInformado" (click)="onClickBotao('consumo')">Consumo(kWh)</button>

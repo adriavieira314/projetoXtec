@@ -8,8 +8,13 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 export class BotoesAlternativosComponent { 
     @Input() cepInformado: boolean;
     @Output() onClick: EventEmitter<any> = new EventEmitter();
+    @Output() apagar: EventEmitter<any> = new EventEmitter();
 
     onClickBotao(valor:string) {
         this.onClick.emit(valor);
+    }
+
+    onApagarBotao() {
+        this.apagar.emit();
     }
 }
