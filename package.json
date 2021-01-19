@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/adriavieira314/projetoXtec.git",
-  "author": "Adria Vieira <adriavieria731@gmail.com>",
+  "author": "Adria Vieira <adriavieira731@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
