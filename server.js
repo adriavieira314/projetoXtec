@@ -7,9 +7,7 @@ const express = require('express'),
   app = express(),
   cron = require('cron').CronJob,
   json = require('./temp/arquivo.json') || "",
-  port = 3000;
-
-//0 5 * * *
+  port = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -46,11 +44,12 @@ function convertToJSON() {
   });
 }
 
-new cron('0 5 * * *', () => {
+//0 5 * * * inicia a busca as 5horas da manhã
+
+new cron('30 10 * * *', () => {
   console.log('Fetch da API iniciado.');
   saveXML();
 }).start();
-
 
 app.use(express.json());
 app.use(express.static('./app/dist/CalculadoraSolar/'));
