@@ -46,7 +46,7 @@ function convertToJSON() {
 
 //0 5 * * * inicia a busca as 5horas da manhã
 
-new cron('00 11 * * *', () => {
+new cron('0 5 * * *', () => {
   console.log('Fetch da API iniciado.');
   saveXML();
 }).start();
